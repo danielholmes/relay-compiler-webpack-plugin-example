@@ -3,12 +3,14 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from './Home';
 import NoMatch from './NoMatch';
 import About from './About';
-import {environment} from '../graphql';
 import {QueryRenderer} from 'react-relay';
+import {createRelayEnvironment} from '../relay';
+
+const relayEnvironment = createRelayEnvironment();
 
 export default () => {
   return <QueryRenderer
-    environment={environment}
+    environment={relayEnvironment}
     query={graphql`
       query AppQuery {
         people {
@@ -29,8 +31,8 @@ export default () => {
       const {people} = props;
       return <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={(props) => <Home people={people} />}/>
-          <Route exact path="/about/:id/" component={About}/>
+          <Route exact path="/" render={() => <Home people={people} />}/>
+          <Route exact path="/about/:id/" render={(props) => <About relayEnvironment={relayEnvironment} {...props} />}/>
           <Route component={NoMatch}/>
         </Switch>
       </BrowserRouter>;

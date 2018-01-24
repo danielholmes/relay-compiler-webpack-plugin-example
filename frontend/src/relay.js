@@ -23,7 +23,8 @@ function fetchQuery(operation, variables) {
     });
 }
 
-export const environment = new Environment({
-  network: Network.create(fetchQuery),
-  store: new Store(new RecordSource()),
-});
+export const createRelayEnvironment = () =>
+  new Environment({
+    network: Network.create(fetchQuery),
+    store: new Store(new RecordSource()),
+  });

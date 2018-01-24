@@ -1,24 +1,23 @@
 import {commitMutation, graphql} from 'react-relay';
-import {environment} from "../graphql";
 
 const mutation = graphql`
-  mutation UpdateNameMutation($id: ID!, $name: String!) {
-    updateName(id: $id, name: $name) {
+  mutation updateFirstNameMutation($id: ID!, $firstName: String!) {
+    updateFirstName(id: $id, firstName: $firstName) {
       person {
+        firstName
         fullName
       }
     }
   }
 `;
 
-export default (input) => {
+export default (environment, variables) => {
   return new Promise((resolve, reject) => {
     commitMutation(
       environment,
       {
         mutation,
-        variables: {input},
-        updater: (store) => { },
+        variables,
         onError: reject,
         onCompleted: resolve
       }

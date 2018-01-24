@@ -3,12 +3,12 @@
 /******/ 		delete installedChunks[chunkId];
 /******/ 	}
 /******/ 	var parentHotUpdateCallback = this["webpackHotUpdate"];
-/******/ 	this["webpackHotUpdate"] = 
+/******/ 	this["webpackHotUpdate"] =
 /******/ 	function webpackHotUpdateCallback(chunkId, moreModules) { // eslint-disable-line no-unused-vars
 /******/ 		hotAddUpdateChunk(chunkId, moreModules);
 /******/ 		if(parentHotUpdateCallback) parentHotUpdateCallback(chunkId, moreModules);
 /******/ 	} ;
-/******/ 	
+/******/
 /******/ 	function hotDownloadUpdateChunk(chunkId) { // eslint-disable-line no-unused-vars
 /******/ 		var head = document.getElementsByTagName("head")[0];
 /******/ 		var script = document.createElement("script");
@@ -18,7 +18,7 @@
 /******/ 		;
 /******/ 		head.appendChild(script);
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotDownloadManifest(requestTimeout) { // eslint-disable-line no-unused-vars
 /******/ 		requestTimeout = requestTimeout || 10000;
 /******/ 		return new Promise(function(resolve, reject) {
@@ -58,8 +58,8 @@
 /******/ 		});
 /******/ 	}
 /******/
-/******/ 	
-/******/ 	
+/******/
+/******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	var hotCurrentHash = "7068c0bae95c73fc556d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
@@ -67,7 +67,7 @@
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParentsTemp = []; // eslint-disable-line no-unused-vars
-/******/ 	
+/******/
 /******/ 	function hotCreateRequire(moduleId) { // eslint-disable-line no-unused-vars
 /******/ 		var me = installedModules[moduleId];
 /******/ 		if(!me) return __webpack_require__;
@@ -113,7 +113,7 @@
 /******/ 				finishChunkLoading();
 /******/ 				throw err;
 /******/ 			});
-/******/ 	
+/******/
 /******/ 			function finishChunkLoading() {
 /******/ 				hotChunksLoading--;
 /******/ 				if(hotStatus === "prepare") {
@@ -128,7 +128,7 @@
 /******/ 		};
 /******/ 		return fn;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotCreateModule(moduleId) { // eslint-disable-line no-unused-vars
 /******/ 		var hot = {
 /******/ 			// private stuff
@@ -138,7 +138,7 @@
 /******/ 			_selfDeclined: false,
 /******/ 			_disposeHandlers: [],
 /******/ 			_main: hotCurrentChildModule !== moduleId,
-/******/ 	
+/******/
 /******/ 			// Module API
 /******/ 			active: true,
 /******/ 			accept: function(dep, callback) {
@@ -171,7 +171,7 @@
 /******/ 				var idx = hot._disposeHandlers.indexOf(callback);
 /******/ 				if(idx >= 0) hot._disposeHandlers.splice(idx, 1);
 /******/ 			},
-/******/ 	
+/******/
 /******/ 			// Management API
 /******/ 			check: hotCheck,
 /******/ 			apply: hotApply,
@@ -186,23 +186,23 @@
 /******/ 				var idx = hotStatusHandlers.indexOf(l);
 /******/ 				if(idx >= 0) hotStatusHandlers.splice(idx, 1);
 /******/ 			},
-/******/ 	
+/******/
 /******/ 			//inherit from previous dispose call
 /******/ 			data: hotCurrentModuleData[moduleId]
 /******/ 		};
 /******/ 		hotCurrentChildModule = undefined;
 /******/ 		return hot;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	var hotStatusHandlers = [];
 /******/ 	var hotStatus = "idle";
-/******/ 	
+/******/
 /******/ 	function hotSetStatus(newStatus) {
 /******/ 		hotStatus = newStatus;
 /******/ 		for(var i = 0; i < hotStatusHandlers.length; i++)
 /******/ 			hotStatusHandlers[i].call(null, newStatus);
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	// while downloading
 /******/ 	var hotWaitingFiles = 0;
 /******/ 	var hotChunksLoading = 0;
@@ -210,15 +210,15 @@
 /******/ 	var hotRequestedFilesMap = {};
 /******/ 	var hotAvailableFilesMap = {};
 /******/ 	var hotDeferred;
-/******/ 	
+/******/
 /******/ 	// The update info
 /******/ 	var hotUpdate, hotUpdateNewHash;
-/******/ 	
+/******/
 /******/ 	function toModuleId(id) {
 /******/ 		var isNumber = (+id) + "" === id;
 /******/ 		return isNumber ? +id : id;
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotCheck(apply) {
 /******/ 		if(hotStatus !== "idle") throw new Error("check() is only allowed in idle status");
 /******/ 		hotApplyOnUpdate = apply;
@@ -232,7 +232,7 @@
 /******/ 			hotWaitingFilesMap = {};
 /******/ 			hotAvailableFilesMap = update.c;
 /******/ 			hotUpdateNewHash = update.h;
-/******/ 	
+/******/
 /******/ 			hotSetStatus("prepare");
 /******/ 			var promise = new Promise(function(resolve, reject) {
 /******/ 				hotDeferred = {
@@ -252,7 +252,7 @@
 /******/ 			return promise;
 /******/ 		});
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotAddUpdateChunk(chunkId, moreModules) { // eslint-disable-line no-unused-vars
 /******/ 		if(!hotAvailableFilesMap[chunkId] || !hotRequestedFilesMap[chunkId])
 /******/ 			return;
@@ -266,7 +266,7 @@
 /******/ 			hotUpdateDownloaded();
 /******/ 		}
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotEnsureUpdateChunk(chunkId) {
 /******/ 		if(!hotAvailableFilesMap[chunkId]) {
 /******/ 			hotWaitingFilesMap[chunkId] = true;
@@ -276,7 +276,7 @@
 /******/ 			hotDownloadUpdateChunk(chunkId);
 /******/ 		}
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotUpdateDownloaded() {
 /******/ 		hotSetStatus("ready");
 /******/ 		var deferred = hotDeferred;
@@ -306,21 +306,21 @@
 /******/ 			deferred.resolve(outdatedModules);
 /******/ 		}
 /******/ 	}
-/******/ 	
+/******/
 /******/ 	function hotApply(options) {
 /******/ 		if(hotStatus !== "ready") throw new Error("apply() is only allowed in ready status");
 /******/ 		options = options || {};
-/******/ 	
+/******/
 /******/ 		var cb;
 /******/ 		var i;
 /******/ 		var j;
 /******/ 		var module;
 /******/ 		var moduleId;
-/******/ 	
+/******/
 /******/ 		function getAffectedStuff(updateModuleId) {
 /******/ 			var outdatedModules = [updateModuleId];
 /******/ 			var outdatedDependencies = {};
-/******/ 	
+/******/
 /******/ 			var queue = outdatedModules.slice().map(function(id) {
 /******/ 				return {
 /******/ 					chain: [id],
@@ -375,7 +375,7 @@
 /******/ 					});
 /******/ 				}
 /******/ 			}
-/******/ 	
+/******/
 /******/ 			return {
 /******/ 				type: "accepted",
 /******/ 				moduleId: updateModuleId,
@@ -383,7 +383,7 @@
 /******/ 				outdatedDependencies: outdatedDependencies
 /******/ 			};
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		function addAllToSet(a, b) {
 /******/ 			for(var i = 0; i < b.length; i++) {
 /******/ 				var item = b[i];
@@ -391,17 +391,17 @@
 /******/ 					a.push(item);
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// at begin all updates modules are outdated
 /******/ 		// the "outdated" status can propagate to parents if they don't accept the children
 /******/ 		var outdatedDependencies = {};
 /******/ 		var outdatedModules = [];
 /******/ 		var appliedUpdate = {};
-/******/ 	
+/******/
 /******/ 		var warnUnexpectedRequire = function warnUnexpectedRequire() {
 /******/ 			console.warn("[HMR] unexpected require(" + result.moduleId + ") to disposed module");
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		for(var id in hotUpdate) {
 /******/ 			if(Object.prototype.hasOwnProperty.call(hotUpdate, id)) {
 /******/ 				moduleId = toModuleId(id);
@@ -474,7 +474,7 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Store self accepted outdated modules to require them later by the module system
 /******/ 		var outdatedSelfAcceptedModules = [];
 /******/ 		for(i = 0; i < outdatedModules.length; i++) {
@@ -485,7 +485,7 @@
 /******/ 					errorHandler: installedModules[moduleId].hot._selfAccepted
 /******/ 				});
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Now in "dispose" phase
 /******/ 		hotSetStatus("dispose");
 /******/ 		Object.keys(hotAvailableFilesMap).forEach(function(chunkId) {
@@ -493,16 +493,16 @@
 /******/ 				hotDisposeChunk(chunkId);
 /******/ 			}
 /******/ 		});
-/******/ 	
+/******/
 /******/ 		var idx;
 /******/ 		var queue = outdatedModules.slice();
 /******/ 		while(queue.length > 0) {
 /******/ 			moduleId = queue.pop();
 /******/ 			module = installedModules[moduleId];
 /******/ 			if(!module) continue;
-/******/ 	
+/******/
 /******/ 			var data = {};
-/******/ 	
+/******/
 /******/ 			// Call dispose handlers
 /******/ 			var disposeHandlers = module.hot._disposeHandlers;
 /******/ 			for(j = 0; j < disposeHandlers.length; j++) {
@@ -510,16 +510,16 @@
 /******/ 				cb(data);
 /******/ 			}
 /******/ 			hotCurrentModuleData[moduleId] = data;
-/******/ 	
+/******/
 /******/ 			// disable module (this disables requires from this module)
 /******/ 			module.hot.active = false;
-/******/ 	
+/******/
 /******/ 			// remove module from cache
 /******/ 			delete installedModules[moduleId];
-/******/ 	
+/******/
 /******/ 			// when disposing there is no need to call dispose handler
 /******/ 			delete outdatedDependencies[moduleId];
-/******/ 	
+/******/
 /******/ 			// remove "parents" references from all children
 /******/ 			for(j = 0; j < module.children.length; j++) {
 /******/ 				var child = installedModules[module.children[j]];
@@ -530,7 +530,7 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// remove outdated dependency from module children
 /******/ 		var dependency;
 /******/ 		var moduleOutdatedDependencies;
@@ -547,19 +547,19 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Not in "apply" phase
 /******/ 		hotSetStatus("apply");
-/******/ 	
+/******/
 /******/ 		hotCurrentHash = hotUpdateNewHash;
-/******/ 	
+/******/
 /******/ 		// insert new code
 /******/ 		for(moduleId in appliedUpdate) {
 /******/ 			if(Object.prototype.hasOwnProperty.call(appliedUpdate, moduleId)) {
 /******/ 				modules[moduleId] = appliedUpdate[moduleId];
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// call accept handlers
 /******/ 		var error = null;
 /******/ 		for(moduleId in outdatedDependencies) {
@@ -598,7 +598,7 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Load self accepted modules
 /******/ 		for(i = 0; i < outdatedSelfAcceptedModules.length; i++) {
 /******/ 			var item = outdatedSelfAcceptedModules[i];
@@ -642,13 +642,13 @@
 /******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// handle errors in accept handlers and self accepted module load
 /******/ 		if(error) {
 /******/ 			hotSetStatus("fail");
 /******/ 			return Promise.reject(error);
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		hotSetStatus("idle");
 /******/ 		return new Promise(function(resolve) {
 /******/ 			resolve(outdatedModules);
@@ -2847,7 +2847,7 @@ eval("/**\n * Copyright (c) 2013-present, Facebook, Inc.\n *\n * This source cod
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.environment = undefined;\n\nvar _stringify = __webpack_require__(782);\n\nvar _stringify2 = _interopRequireDefault(_stringify);\n\nvar _relayRuntime = __webpack_require__(109);\n\n__webpack_require__(784);\n\n__webpack_require__(787);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction fetchQuery(operation, variables) {\n  return fetch('//localhost:4000/graphql/', {\n    method: 'POST',\n    credentials: 'same-origin',\n    headers: {\n      'Content-Type': 'application/json'\n    },\n    body: (0, _stringify2.default)({\n      query: operation.text,\n      variables: variables\n    })\n  }).then(function (response) {\n    return response.json();\n  }).then(function (response) {\n    if (response.errors) {\n      throw new Error(response.errors.map(function (e) {\n        return e.message;\n      }).join(', '));\n    }\n    return response;\n  });\n}\n\nvar environment = exports.environment = new _relayRuntime.Environment({\n  network: _relayRuntime.Network.create(fetchQuery),\n  store: new _relayRuntime.Store(new _relayRuntime.RecordSource())\n});\n\n//////////////////\n// WEBPACK FOOTER\n// ./frontend/src/graphql.js\n// module id = 324\n// module chunks = 0\n\n//# sourceURL=webpack:///./frontend/src/graphql.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.environment = undefined;\n\nvar _stringify = __webpack_require__(782);\n\nvar _stringify2 = _interopRequireDefault(_stringify);\n\nvar _relayRuntime = __webpack_require__(109);\n\n__webpack_require__(784);\n\n__webpack_require__(787);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction fetchQuery(operation, variables) {\n  return fetch('//localhost:4000/graphql/', {\n    method: 'POST',\n    credentials: 'same-origin',\n    headers: {\n      'Content-Type': 'application/json'\n    },\n    body: (0, _stringify2.default)({\n      query: operation.text,\n      variables: variables\n    })\n  }).then(function (response) {\n    return response.json();\n  }).then(function (response) {\n    if (response.errors) {\n      throw new Error(response.errors.map(function (e) {\n        return e.message;\n      }).join(', '));\n    }\n    return response;\n  });\n}\n\nvar environment = exports.environment = new _relayRuntime.Environment({\n  network: _relayRuntime.Network.create(fetchQuery),\n  store: new _relayRuntime.Store(new _relayRuntime.RecordSource())\n});\n\n//////////////////\n// WEBPACK FOOTER\n// ./frontend/src/relay.js\n// module id = 324\n// module chunks = 0\n\n//# sourceURL=webpack:///./frontend/src/relay.js?");
 
 /***/ }),
 /* 325 */
@@ -5902,14 +5902,14 @@ eval("(function(self) {\n  'use strict';\n\n  if (self.fetch) {\n    return\n  }
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/**\n * \n * @relayHash 2f4e9c6fa105007c547e28e8615f9538\n */\n\n/* eslint-disable */\n\n\n\n/*::\nimport type {ConcreteBatch} from 'relay-runtime';\nexport type AboutQueryResponse = {|\n  +personById: ?{|\n    +id: string;\n    +fullName: string;\n  |};\n|};\n*/\n\n/*\nquery AboutQuery(\n  $id: ID!\n) {\n  personById(id: $id) {\n    id\n    fullName\n  }\n}\n*/\n\nvar batch /*: ConcreteBatch*/ = {\n  \"fragment\": {\n    \"argumentDefinitions\": [{\n      \"kind\": \"LocalArgument\",\n      \"name\": \"id\",\n      \"type\": \"ID!\",\n      \"defaultValue\": null\n    }],\n    \"kind\": \"Fragment\",\n    \"metadata\": null,\n    \"name\": \"AboutQuery\",\n    \"selections\": [{\n      \"kind\": \"LinkedField\",\n      \"alias\": null,\n      \"args\": [{\n        \"kind\": \"Variable\",\n        \"name\": \"id\",\n        \"variableName\": \"id\",\n        \"type\": \"ID!\"\n      }],\n      \"concreteType\": \"Person\",\n      \"name\": \"personById\",\n      \"plural\": false,\n      \"selections\": [{\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"id\",\n        \"storageKey\": null\n      }, {\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"fullName\",\n        \"storageKey\": null\n      }],\n      \"storageKey\": null\n    }],\n    \"type\": \"Query\"\n  },\n  \"id\": null,\n  \"kind\": \"Batch\",\n  \"metadata\": {},\n  \"name\": \"AboutQuery\",\n  \"query\": {\n    \"argumentDefinitions\": [{\n      \"kind\": \"LocalArgument\",\n      \"name\": \"id\",\n      \"type\": \"ID!\",\n      \"defaultValue\": null\n    }],\n    \"kind\": \"Root\",\n    \"name\": \"AboutQuery\",\n    \"operation\": \"query\",\n    \"selections\": [{\n      \"kind\": \"LinkedField\",\n      \"alias\": null,\n      \"args\": [{\n        \"kind\": \"Variable\",\n        \"name\": \"id\",\n        \"variableName\": \"id\",\n        \"type\": \"ID!\"\n      }],\n      \"concreteType\": \"Person\",\n      \"name\": \"personById\",\n      \"plural\": false,\n      \"selections\": [{\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"id\",\n        \"storageKey\": null\n      }, {\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"fullName\",\n        \"storageKey\": null\n      }],\n      \"storageKey\": null\n    }]\n  },\n  \"text\": \"query AboutQuery(\\n  $id: ID!\\n) {\\n  personById(id: $id) {\\n    id\\n    fullName\\n  }\\n}\\n\"\n};\n\nmodule.exports = batch;\n\n//////////////////\n// WEBPACK FOOTER\n// ./frontend/src/components/__generated__/AboutQuery.graphql.js\n// module id = 789\n// module chunks = 0\n\n//# sourceURL=webpack:///./frontend/src/components/__generated__/AboutQuery.graphql.js?");
+eval("/**\n * \n * @relayHash 2f4e9c6fa105007c547e28e8615f9538\n */\n\n/* eslint-disable */\n\n\n\n/*::\nimport type {ConcreteBatch} from 'relay-runtime';\nexport type AboutQueryResponse = {|\n  +personById: ?{|\n    +id: string;\n    +fullName: string;\n  |};\n|};\n*/\n\n/*\nquery AboutQuery(\n  $id: ID!\n) {\n  personById(id: $id) {\n    id\n    fullName\n  }\n}\n*/\n\nvar batch /*: ConcreteBatch*/ = {\n  \"fragment\": {\n    \"argumentDefinitions\": [{\n      \"kind\": \"LocalArgument\",\n      \"name\": \"id\",\n      \"type\": \"ID!\",\n      \"defaultValue\": null\n    }],\n    \"kind\": \"Fragment\",\n    \"metadata\": null,\n    \"name\": \"AboutQuery\",\n    \"selections\": [{\n      \"kind\": \"LinkedField\",\n      \"alias\": null,\n      \"args\": [{\n        \"kind\": \"Variable\",\n        \"name\": \"id\",\n        \"variableName\": \"id\",\n        \"type\": \"ID!\"\n      }],\n      \"concreteType\": \"Person\",\n      \"name\": \"personById\",\n      \"plural\": false,\n      \"selections\": [{\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"id\",\n        \"storageKey\": null\n      }, {\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"fullName\",\n        \"storageKey\": null\n      }],\n      \"storageKey\": null\n    }],\n    \"type\": \"Query\"\n  },\n  \"id\": null,\n  \"kind\": \"Batch\",\n  \"metadata\": {},\n  \"name\": \"AboutQuery\",\n  \"query\": {\n    \"argumentDefinitions\": [{\n      \"kind\": \"LocalArgument\",\n      \"name\": \"id\",\n      \"type\": \"ID!\",\n      \"defaultValue\": null\n    }],\n    \"kind\": \"Root\",\n    \"name\": \"AboutQuery\",\n    \"operation\": \"query\",\n    \"selections\": [{\n      \"kind\": \"LinkedField\",\n      \"alias\": null,\n      \"args\": [{\n        \"kind\": \"Variable\",\n        \"name\": \"id\",\n        \"variableName\": \"id\",\n        \"type\": \"ID!\"\n      }],\n      \"concreteType\": \"Person\",\n      \"name\": \"personById\",\n      \"plural\": false,\n      \"selections\": [{\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"id\",\n        \"storageKey\": null\n      }, {\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"fullName\",\n        \"storageKey\": null\n      }],\n      \"storageKey\": null\n    }]\n  },\n  \"text\": \"query AboutQuery(\\n  $id: ID!\\n) {\\n  personById(id: $id) {\\n    id\\n    fullName\\n  }\\n}\\n\"\n};\n\nmodule.exports = batch;\n\n//////////////////\n// WEBPACK FOOTER\n// ./frontend/src/components/__generated__/AboutQuery.relay.js\n// module id = 789\n// module chunks = 0\n\n//# sourceURL=webpack:///./frontend/src/components/__generated__/AboutQuery.relay.js?");
 
 /***/ }),
 /* 790 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/**\n * \n * @relayHash ee0829c95b5b5d1e6daa041d2113daa1\n */\n\n/* eslint-disable */\n\n\n\n/*::\nimport type {ConcreteBatch} from 'relay-runtime';\nexport type AppQueryResponse = {|\n  +people: ?$ReadOnlyArray<?{|\n    +id: string;\n    +fullName: string;\n  |}>;\n|};\n*/\n\n/*\nquery AppQuery {\n  people {\n    id\n    fullName\n  }\n}\n*/\n\nvar batch /*: ConcreteBatch*/ = {\n  \"fragment\": {\n    \"argumentDefinitions\": [],\n    \"kind\": \"Fragment\",\n    \"metadata\": null,\n    \"name\": \"AppQuery\",\n    \"selections\": [{\n      \"kind\": \"LinkedField\",\n      \"alias\": null,\n      \"args\": null,\n      \"concreteType\": \"Person\",\n      \"name\": \"people\",\n      \"plural\": true,\n      \"selections\": [{\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"id\",\n        \"storageKey\": null\n      }, {\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"fullName\",\n        \"storageKey\": null\n      }],\n      \"storageKey\": null\n    }],\n    \"type\": \"Query\"\n  },\n  \"id\": null,\n  \"kind\": \"Batch\",\n  \"metadata\": {},\n  \"name\": \"AppQuery\",\n  \"query\": {\n    \"argumentDefinitions\": [],\n    \"kind\": \"Root\",\n    \"name\": \"AppQuery\",\n    \"operation\": \"query\",\n    \"selections\": [{\n      \"kind\": \"LinkedField\",\n      \"alias\": null,\n      \"args\": null,\n      \"concreteType\": \"Person\",\n      \"name\": \"people\",\n      \"plural\": true,\n      \"selections\": [{\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"id\",\n        \"storageKey\": null\n      }, {\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"fullName\",\n        \"storageKey\": null\n      }],\n      \"storageKey\": null\n    }]\n  },\n  \"text\": \"query AppQuery {\\n  people {\\n    id\\n    fullName\\n  }\\n}\\n\"\n};\n\nmodule.exports = batch;\n\n//////////////////\n// WEBPACK FOOTER\n// ./frontend/src/components/__generated__/AppQuery.graphql.js\n// module id = 790\n// module chunks = 0\n\n//# sourceURL=webpack:///./frontend/src/components/__generated__/AppQuery.graphql.js?");
+eval("/**\n * \n * @relayHash ee0829c95b5b5d1e6daa041d2113daa1\n */\n\n/* eslint-disable */\n\n\n\n/*::\nimport type {ConcreteBatch} from 'relay-runtime';\nexport type AppQueryResponse = {|\n  +people: ?$ReadOnlyArray<?{|\n    +id: string;\n    +fullName: string;\n  |}>;\n|};\n*/\n\n/*\nquery AppQuery {\n  people {\n    id\n    fullName\n  }\n}\n*/\n\nvar batch /*: ConcreteBatch*/ = {\n  \"fragment\": {\n    \"argumentDefinitions\": [],\n    \"kind\": \"Fragment\",\n    \"metadata\": null,\n    \"name\": \"AppQuery\",\n    \"selections\": [{\n      \"kind\": \"LinkedField\",\n      \"alias\": null,\n      \"args\": null,\n      \"concreteType\": \"Person\",\n      \"name\": \"people\",\n      \"plural\": true,\n      \"selections\": [{\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"id\",\n        \"storageKey\": null\n      }, {\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"fullName\",\n        \"storageKey\": null\n      }],\n      \"storageKey\": null\n    }],\n    \"type\": \"Query\"\n  },\n  \"id\": null,\n  \"kind\": \"Batch\",\n  \"metadata\": {},\n  \"name\": \"AppQuery\",\n  \"query\": {\n    \"argumentDefinitions\": [],\n    \"kind\": \"Root\",\n    \"name\": \"AppQuery\",\n    \"operation\": \"query\",\n    \"selections\": [{\n      \"kind\": \"LinkedField\",\n      \"alias\": null,\n      \"args\": null,\n      \"concreteType\": \"Person\",\n      \"name\": \"people\",\n      \"plural\": true,\n      \"selections\": [{\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"id\",\n        \"storageKey\": null\n      }, {\n        \"kind\": \"ScalarField\",\n        \"alias\": null,\n        \"args\": null,\n        \"name\": \"fullName\",\n        \"storageKey\": null\n      }],\n      \"storageKey\": null\n    }]\n  },\n  \"text\": \"query AppQuery {\\n  people {\\n    id\\n    fullName\\n  }\\n}\\n\"\n};\n\nmodule.exports = batch;\n\n//////////////////\n// WEBPACK FOOTER\n// ./frontend/src/components/__generated__/AppQuery.relay.js\n// module id = 790\n// module chunks = 0\n\n//# sourceURL=webpack:///./frontend/src/components/__generated__/AppQuery.relay.js?");
 
 /***/ })
 /******/ ]);
