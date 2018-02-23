@@ -14,8 +14,7 @@ export default () => {
     query={graphql`
       query AppQuery {
         people {
-          id
-          fullName
+          ...Home_people
         }
       }`}
     render={({props, error}) => {

@@ -1,19 +1,27 @@
 import React from 'react';
-import {Col, Grid, Row} from "react-bootstrap";
-import {Link} from 'react-router-dom';
+import {Col, Grid, Row} from 'react-bootstrap';
+import {createFragmentContainer} from 'react-relay';
+import HomeItem from './HomeItem';
 
-export default ({people}) => {
+const Home = ({people}) => {
   return <Grid fluid>
     <Row>
       <Col xs={12}>
         <h2>Home</h2>
         <ul>
-          {people.map(({id, fullName}) =>
-            <li key={id}>
-              <Link to={`/about/${id}/`}>{fullName}</Link>
-            </li>)}
+          {people.map((person) => <HomeItem key={person.id} person={person}/>)}
         </ul>
       </Col>
     </Row>
   </Grid>;
 };
+
+export default createFragmentContainer(
+  Home,
+  graphql`
+    fragment Home_people on Person @relay(plural: true) {
+      id
+      ...HomeItem_person
+    }
+  `
+)
