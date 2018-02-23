@@ -28,3 +28,12 @@ yarn backend
 yarn clean-relay
 yarn frontend
 ```
+
+
+## Direct relay-compiler Call
+
+To help see differences with webpack plugin vs direct invocation.
+
+```bash
+yarn relay-compile
+```

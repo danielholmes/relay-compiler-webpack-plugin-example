@@ -6,6 +6,7 @@
   "scripts": {
     "frontend": "node frontend.js",
     "backend": "node backend.js",
+    "relay-compile": "relay-compiler --schema=data/schema.json --src=./frontend",
     "generate-schema": "node generate-schema.js",
     "clean-relay": "find frontend/src -name __generated__ | xargs rm -rf"
   },
