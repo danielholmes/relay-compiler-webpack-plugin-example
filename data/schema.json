@@ -12,11 +12,11 @@
         {
           "kind": "OBJECT",
           "name": "Query",
-          "description": "",
+          "description": null,
           "fields": [
             {
               "name": "people",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "LIST",
@@ -32,11 +32,11 @@
             },
             {
               "name": "personById",
-              "description": "",
+              "description": null,
               "args": [
                 {
                   "name": "id",
-                  "description": "",
+                  "description": null,
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -66,11 +66,11 @@
         {
           "kind": "OBJECT",
           "name": "Person",
-          "description": "",
+          "description": null,
           "fields": [
             {
               "name": "id",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -85,8 +85,40 @@
               "deprecationReason": null
             },
             {
+              "name": "firstName",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "lastName",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "fullName",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -129,15 +161,15 @@
         {
           "kind": "OBJECT",
           "name": "Mutation",
-          "description": "",
+          "description": null,
           "fields": [
             {
-              "name": "updateName",
-              "description": "",
+              "name": "updateFirstName",
+              "description": null,
               "args": [
                 {
                   "name": "id",
-                  "description": "",
+                  "description": null,
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -150,8 +182,8 @@
                   "defaultValue": null
                 },
                 {
-                  "name": "name",
-                  "description": "",
+                  "name": "firstName",
+                  "description": null,
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -169,7 +201,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "UpdateNameOutput",
+                  "name": "UpdateFirstNameOutput",
                   "ofType": null
                 }
               },
@@ -184,12 +216,12 @@
         },
         {
           "kind": "OBJECT",
-          "name": "UpdateNameOutput",
-          "description": "",
+          "name": "UpdateFirstNameOutput",
+          "description": null,
           "fields": [
             {
               "name": "person",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "NON_NULL",

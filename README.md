@@ -20,9 +20,11 @@ yarn
 ## Running
 
 ```bash
-yarn frontend
+yarn generate-schema
+yarn backend
 ```
 
 ```bash
-yarn backend
+yarn clean-relay
+yarn frontend
 ```
