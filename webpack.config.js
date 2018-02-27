@@ -33,8 +33,8 @@ module.exports = {
       }
     }),
     new RelayCompilerWebpackPlugin({
-      //schema: path.resolve(__dirname, './data/schema.json'),
-      schema: require('./backend/src/schema'),
+      schema: path.resolve(__dirname, './data/schema.json'),
+      //schema: require('./backend/src/schema'),
       src: path.resolve(__dirname, './frontend/src'),
     })
   ],
