@@ -31,6 +31,12 @@ yarn frontend
 
 Site now available at [http://127.0.0.1:3000](http://127.0.0.1:3000).
 
+Or for a single webpack build:
+
+```bash
+yarn build
+```
+
 
 ## Direct relay-compiler Call
 
