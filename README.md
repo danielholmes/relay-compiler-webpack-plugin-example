@@ -1,5 +1,7 @@
 # Relay Compiler Webpack Plugin Example
 
+[![Build Status](https://travis-ci.org/danielholmes/relay-compiler-webpack-plugin-example.svg?branch=master)](https://travis-ci.org/danielholmes/relay-compiler-webpack-plugin-example)
+
 Example project setup for testing out 
 [relay-compiler-webpack-plugin](https://github.com/danielholmes/relay-compiler-webpack-plugin).
 
