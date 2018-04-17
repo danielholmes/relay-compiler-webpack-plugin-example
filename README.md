@@ -29,6 +29,8 @@ yarn clean-relay
 yarn frontend
 ```
 
+Site now available at [http://127.0.0.1:3000](http://127.0.0.1:3000).
+
 
 ## Direct relay-compiler Call
 
@@ -37,3 +39,9 @@ To help see differences with webpack plugin vs direct invocation.
 ```bash
 yarn relay-compile
 ```
+
+
+## TODO
+
+ - Set up some tests. See [lodash webpack plugin](https://github.com/lodash/lodash-webpack-plugin/blob/master/.travis.yml)
+   for example of testing with multiple webpack versions

@@ -6,11 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: "eval",
   context: __dirname,
+  mode: 'development',
 
   entry: {
     website: [
-      "webpack-dev-server/client?http://localhost:3000",
-      "webpack/hot/only-dev-server",
+      'webpack-dev-server/client?http://localhost:3000',
+      'webpack/hot/only-dev-server',
       "./frontend/src/entry"
     ]
   },
