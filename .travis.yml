@@ -1,0 +1,28 @@
+language: node_js
+
+cache:
+  yarn: true
+
+node_js:
+  - "6"
+  - "7"
+  - "8"
+  - "9"
+
+env:
+  - WEBPACK_VERSION=3
+  - WEBPACK_VERSION=4
+
+branches:
+  only:
+    - master
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
+install:
+  - yarn
+  - yarn rm webpack
+  - yarn add webpack@$WEBPACK_VERSION
+  - yarn relay-compile
