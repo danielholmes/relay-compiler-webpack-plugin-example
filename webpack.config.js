@@ -6,7 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: "eval",
   context: __dirname,
-  mode: 'development',
 
   entry: {
     website: [
