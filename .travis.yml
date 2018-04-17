@@ -21,6 +21,6 @@ before_install:
 
 install:
   - yarn
-  - yarn rm webpack
+  - yarn remove webpack
   - yarn add webpack@$WEBPACK_VERSION
   - yarn relay-compile
