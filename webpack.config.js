@@ -1,43 +1,15 @@
 const path = require("path");
-const webpack = require("webpack");
 const RelayCompilerWebpackPlugin = require('relay-compiler-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: "eval",
-  context: __dirname,
-
-  entry: {
-    website: [
-      'webpack-dev-server/client?http://localhost:3000',
-      'webpack/hot/only-dev-server',
-      "./frontend/src/entry"
-    ]
-  },
-
+  mode: 'development',
+  devtool: 'cheap-eval-source-map',
+  entry: ['@babel/polyfill', './frontend/src/entry.js'],
   output: {
-    path: __dirname + '/dist',
-    filename: '[name]-[hash].js',
-    publicPath: 'http://localhost:3000/'
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name]-[hash].js'
   },
-
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'frontend', 'src', 'index.html')
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('development')
-      }
-    }),
-    new RelayCompilerWebpackPlugin({
-      schema: path.resolve(__dirname, './data/schema.json'),
-      //schema: require('./backend/src/schema'),
-      src: path.resolve(__dirname, './frontend/src'),
-    })
-  ],
 
   module: {
     rules: [
@@ -77,9 +49,14 @@ module.exports = {
     ]
   },
 
-  resolve: {
-    modules: [
-      path.join(__dirname, 'node_modules')
-    ]
-  }
-};
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'frontend', 'src', 'index.html')
+    }),
+    new RelayCompilerWebpackPlugin({
+      schema: path.resolve(__dirname, './data/schema.json'),
+      //schema: require('./backend/src/schema'),
+      src: path.resolve(__dirname, './frontend/src'),
+    })
+  ],
+}

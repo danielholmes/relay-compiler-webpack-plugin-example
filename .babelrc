@@ -1,12 +1,9 @@
 {
-  "passPerPreset": true,
   "plugins": [
-    "relay",
-    "transform-runtime"
+    "babel-plugin-relay"
   ],
   "presets": [
-    "react",
-    "env",
-    "stage-0"
+    "@babel/preset-react",
+    "@babel/preset-env"
   ]
 }
