@@ -28,5 +28,5 @@ install:
 
 script:
   - yarn build
-  - yarn clean-relay
+  - yarn clean
   - yarn relay-compile
