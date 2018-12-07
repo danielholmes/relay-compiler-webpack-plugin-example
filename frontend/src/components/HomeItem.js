@@ -1,8 +1,12 @@
-import React from 'react';
-import {createFragmentContainer} from 'react-relay';
-import {Link} from 'react-router-dom';
+import React from 'react'
+import { createFragmentContainer } from 'react-relay'
+import { Link } from 'react-router-dom'
 
-const HomeItem = ({person: {id, fullName}}) => <li><Link to={`/about/${id}/`}>{fullName}</Link></li>;
+const HomeItem = ({ person: { id, fullName } }) => (
+  <li>
+    <Link to={`/about/${id}/`}>{fullName}</Link>
+  </li>
+)
 
 export default createFragmentContainer(
   HomeItem,
@@ -12,4 +16,4 @@ export default createFragmentContainer(
       fullName
     }
   `
-);
+)

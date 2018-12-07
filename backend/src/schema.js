@@ -1,4 +1,4 @@
-var {buildSchema} = require('graphql');
+var { buildSchema } = require('graphql')
 
 module.exports = buildSchema(`
   type Person {
@@ -20,4 +20,4 @@ module.exports = buildSchema(`
   type Mutation {
     updateFirstName(id: ID!, firstName: String!): UpdateFirstNameOutput!
   }
-`);
+`)

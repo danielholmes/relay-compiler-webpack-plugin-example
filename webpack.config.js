@@ -3,7 +3,7 @@ const RelayCompilerWebpackPlugin = require('relay-compiler-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  // Incalid for webpack 3, which is tested in travis
+  // Invalid for webpack 3, which is tested in travis
   // mode: 'development',
   devtool: 'cheap-eval-source-map',
   entry: ['@babel/polyfill', './frontend/src/entry.js'],

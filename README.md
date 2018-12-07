@@ -27,7 +27,7 @@ yarn backend
 ```
 
 ```bash
-yarn clean-relay
+yarn clean
 yarn frontend
 ```
 
