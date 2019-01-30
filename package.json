@@ -8,7 +8,7 @@
     "backend": "node backend.js",
     "format": "prettier-standard 'frontend/src/**/*.js' 'backend/src/**/*.js'",
     "build": "webpack --config webpack.config.js",
-    "relay-compile": "relay-compiler --schema=data/schema.json --src=./frontend",
+    "relay-compile": "relay-compiler --schema=data/schema.json --src=./frontend --watchman false",
     "generate-schema": "node generate-schema.js",
     "clean": "find frontend/src -name __generated__ | xargs rm -rf"
   },
