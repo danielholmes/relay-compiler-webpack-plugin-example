@@ -1,10 +1,11 @@
 const path = require("path");
 const RelayCompilerWebpackPlugin = require('relay-compiler-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   // Invalid for webpack 3, which is tested in travis
-  // mode: 'development',
+  mode: (webpack.version >= '4') ? 'development' : undefined,
   devtool: 'cheap-eval-source-map',
   entry: ['@babel/polyfill', './frontend/src/entry.js'],
   output: {

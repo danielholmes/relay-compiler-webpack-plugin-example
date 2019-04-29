@@ -10,10 +10,12 @@ const HomeItem = ({ person: { id, fullName } }) => (
 
 export default createFragmentContainer(
   HomeItem,
-  graphql`
-    fragment HomeItem_person on Person {
-      id
-      fullName
-    }
-  `
+  {
+    person: graphql`
+      fragment HomeItem_person on Person {
+        id
+        fullName
+      }
+    `
+  }
 )

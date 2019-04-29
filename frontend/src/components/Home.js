@@ -20,10 +20,12 @@ const Home = ({ people }) => {
 
 export default createFragmentContainer(
   Home,
-  graphql`
-    fragment Home_people on Person @relay(plural: true) {
-      id
-      ...HomeItem_person
-    }
-  `
+  {
+    people: graphql`
+      fragment Home_people on Person @relay(plural: true) {
+        id
+        ...HomeItem_person
+      }
+    `
+  }
 )
