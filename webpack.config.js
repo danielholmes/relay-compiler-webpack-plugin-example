@@ -3,9 +3,7 @@ const RelayCompilerWebpackPlugin = require('relay-compiler-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-module.exports = {
-  // Invalid for webpack 3, which is tested in travis
-  mode: (webpack.version >= '4') ? 'development' : undefined,
+const config = {
   devtool: 'cheap-eval-source-map',
   entry: ['@babel/polyfill', './frontend/src/entry.js'],
   output: {
@@ -62,3 +60,9 @@ module.exports = {
     })
   ],
 }
+
+if (webpack.version >= '4') {
+  config.mode = 'development'
+}
+
+module.exports = config
