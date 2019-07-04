@@ -6,7 +6,7 @@ const cors = require('cors');
 const people = [
   {id: 1, firstName: 'Daniel', lastName: 'Holmes', fullName: 'Daniel Holmes'},
   {id: 2, firstName: 'Darth', lastName: 'Vader', fullName: 'Darth Vader'},
-  {id: 3, firstName: 'Freddy', lastName: 'Mercury', fullName: 'Freddy Mercury'},
+  {id: 3, firstName: 'Freddie', lastName: 'Mercury', fullName: 'Freddie Mercury'},
 ];
 
 // The root provides a resolver function for each API endpoint
