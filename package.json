@@ -4,12 +4,12 @@
   "author": "Daniel Holmes",
   "license": "MIT",
   "scripts": {
-    "frontend": "node frontend.js",
-    "backend": "node backend.js",
+    "frontend": "node scripts/frontend.js",
+    "backend": "node scripts/backend.js",
     "format": "prettier-standard 'frontend/src/**/*.js' 'backend/src/**/*.js'",
     "build": "webpack --config webpack.config.js",
     "relay-compile": "relay-compiler --schema=data/schema.json --src=./frontend --watchman false",
-    "generate-schema": "node generate-schema.js",
+    "generate-schema": "node scripts/generate-schema.js",
     "clean": "find frontend/src -name __generated__ | xargs rm -rf"
   },
   "engines": {
@@ -31,7 +31,7 @@
     "prettier-standard": "^9.1.1",
     "relay-compiler": "^5.0.0",
     "relay-compiler-webpack-plugin": "^5.0.0",
-    "style-loader": "^0.23.1",
+    "style-loader": "^1.0.0",
     "url-loader": "^2.0.1",
     "watchify": "^3.11.0",
     "webpack": "^4.5.0",

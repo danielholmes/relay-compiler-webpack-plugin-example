@@ -1,6 +1,6 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
-const schema = require('./backend/src/schema');
+const schema = require('../backend/src/schema');
 const cors = require('cors');
 
 const people = [
